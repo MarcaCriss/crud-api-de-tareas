@@ -1,4 +1,45 @@
-import { Controller } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+} from '@nestjs/common';
+
+import { TareaService } from './tarea.service';
+import { CreateTareaDto, EditTareaDto } from './dtos';
 
 @Controller('tarea')
-export class TareaController {}
+export class TareaController {
+  constructor(private tareaService: TareaService) {}
+
+  @Get()
+  async getAllTask() {
+    return await this.tareaService.getAllTask();
+  }
+
+  @Post('create')
+  async createTask(@Body() createTareaDto: CreateTareaDto) {
+    return await this.tareaService.createTask(createTareaDto);
+  }
+
+  @Get(':id')
+  async getOneTask(@Param('id') id: number) {
+    return await this.tareaService.getOneTask(id);
+  }
+
+  @Put(':id')
+  async updateTask(
+    @Param('id') id: number,
+    @Body() editTareaDto: EditTareaDto,
+  ) {
+    return await this.tareaService.editTask(id, editTareaDto);
+  }
+
+  @Delete(':id')
+  async deleteTask(@Param('id') id: number) {
+    return await this.tareaService.deleteTask(id);
+  }
+}
