@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TareaModule } from './tarea/tarea.module';
 
 @Module({
-  imports: [TareaModule],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/tarea'),
+    TareaModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
