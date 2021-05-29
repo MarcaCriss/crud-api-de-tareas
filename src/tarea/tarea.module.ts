@@ -7,7 +7,14 @@ import { Tarea, TareaSchema } from './schemas';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Tarea.name, schema: TareaSchema }]),
+    MongooseModule.forFeatureAsync([
+      {
+        name: Tarea.name,
+        useFactory: () => {
+          return TareaSchema;
+        },
+      },
+    ]),
   ],
   controllers: [TareaController],
   providers: [TareaService],
