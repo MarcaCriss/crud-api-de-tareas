@@ -10,7 +10,9 @@ import {
 
 import { TareaService } from './tarea.service';
 import { CreateTareaDto, EditTareaDto } from './dtos';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Tarea')
 @Controller('tarea')
 export class TareaController {
   constructor(private tareaService: TareaService) {}
