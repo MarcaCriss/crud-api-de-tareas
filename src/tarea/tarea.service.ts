@@ -27,28 +27,21 @@ export class TareaService {
   }
 
   async getOneTask(_id: number) {
-    const tarea = await this.tareaModel.findById(_id).exec();
+    const tarea = await this.tareaModel.findById({ _id }).exec();
     if (!tarea) new NotFoundException('La tarea no existe');
     return tarea;
   }
 
   async editTask(_id: number, editTareaDto: EditTareaDto) {
-    const tareaUpdate = await this.tareaModel.findByIdAndUpdate(
-      _id,
-      editTareaDto,
-      { new: true },
-    );
-    if (!tareaUpdate) new NotFoundException('La tarea no se puedo actualizar');
-    return {
-      message: 'Tarea actualizada correctamente',
-      data: tareaUpdate,
-    };
+    return await this.tareaModel.findByIdAndUpdate({ _id }, editTareaDto, {
+      new: true,
+    });
   }
 
   async deleteTask(_id: number) {
-    const tareaDelete = await this.tareaModel.findByIdAndRemove(_id);
+    const tareaDelete = await this.tareaModel.findByIdAndDelete({ _id });
     return {
-      message: 'Tarea eliminada correctamen',
+      message: 'Tarea eliminada correctamente',
       data: tareaDelete,
     };
   }
