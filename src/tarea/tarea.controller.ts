@@ -28,20 +28,20 @@ export class TareaController {
   }
 
   @Get(':id')
-  async getOneTask(@Param('id') id: number) {
+  async getOneTask(@Param('id') id: string) {
     return await this.tareaService.getOneTask(id);
   }
 
   @Put(':id')
   async updateTask(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() editTareaDto: EditTareaDto,
   ) {
     return await this.tareaService.editTask(id, editTareaDto);
   }
 
   @Delete(':id')
-  async deleteTask(@Param('id') id: number) {
+  async deleteTask(@Param('id') id: string) {
     return await this.tareaService.deleteTask(id);
   }
 }

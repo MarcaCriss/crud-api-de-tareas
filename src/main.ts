@@ -9,6 +9,7 @@ async function bootstrap() {
   const port = 3000;
   const logger = new Logger();
   logger.log('Servidor corriendo en el puerto ' + port);
+  app.enableCors({ origin: 'http://localhost:4200' });
   await app.listen(port);
 }
 bootstrap();

@@ -26,19 +26,19 @@ export class TareaService {
     };
   }
 
-  async getOneTask(_id: number) {
+  async getOneTask(_id: string) {
     const tarea = await this.tareaModel.findById({ _id }).exec();
     if (!tarea) new NotFoundException('La tarea no existe');
     return tarea;
   }
 
-  async editTask(_id: number, editTareaDto: EditTareaDto) {
+  async editTask(_id: string, editTareaDto: EditTareaDto) {
     return await this.tareaModel.findByIdAndUpdate({ _id }, editTareaDto, {
       new: true,
     });
   }
 
-  async deleteTask(_id: number) {
+  async deleteTask(_id: string) {
     const tareaDelete = await this.tareaModel.findByIdAndDelete({ _id });
     return {
       message: 'Tarea eliminada correctamente',
