@@ -17,6 +17,14 @@ export class TareaService {
     return await this.tareaModel.find().exec();
   }
 
+  async getAllTaskComplete() {
+    return await this.tareaModel.find({ status: true }).exec();
+  }
+
+  async getAllTaskIncomplete() {
+    return await this.tareaModel.find({ status: false }).exec();
+  }
+
   async createTask(createTareaDto: CreateTareaDto) {
     const tareaCreada = new this.tareaModel(createTareaDto);
     tareaCreada.save();

@@ -22,6 +22,16 @@ export class TareaController {
     return await this.tareaService.getAllTask();
   }
 
+  @Get('complete')
+  async getAllTaskComplete() {
+    return await this.tareaService.getAllTaskComplete();
+  }
+
+  @Get('incomplete')
+  async getAllTaskIncomplete() {
+    return await this.tareaService.getAllTaskIncomplete();
+  }
+
   @Post('create')
   async createTask(@Body() createTareaDto: CreateTareaDto) {
     return await this.tareaService.createTask(createTareaDto);
